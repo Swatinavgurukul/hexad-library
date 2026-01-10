@@ -2,13 +2,27 @@ import React from "react";
 import { useBooks } from "../hooks/useBooks";
 import { BookCard } from "./BookCard";
 import { ErrorMessage } from "../../shared/components/ErrorMessage";
+import { useAuth } from "../../auth/AuthContext";
 
 export const BookList: React.FC = () => {
-    const { books, borrowBook, returnBook, error } = useBooks();
+    const { user } = useAuth();
+    const { books, borrowBook, returnBook, error, activeBorrows } = useBooks({ user });
 
     return (
         <div style={{ padding: "20px" }}>
-            <h1>Library Books</h1>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+                <h1>Library Books</h1>
+                {user && (
+                    <div style={{
+                        padding: "10px 20px",
+                        backgroundColor: activeBorrows.length >= 2 ? "#ffebee" : "#e8f5e9",
+                        borderRadius: "8px",
+                        fontWeight: "bold"
+                    }}>
+                        Borrowed: {activeBorrows.length}/2 books
+                    </div>
+                )}
+            </div>
 
             {error && <ErrorMessage message={error} />}
 
