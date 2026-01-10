@@ -1,4 +1,5 @@
 import { books } from "./mockData";
+import { Book } from "../books/types";
 
 export const mockApi = {
     getBooks: async () => {
@@ -23,5 +24,16 @@ export const mockApi = {
         }
         book.availableStock += 1;
         return book;
+    },
+
+    addBook: async (bookData: Omit<Book, "id">) => {
+        const newBook: Book = {
+            id: Date.now().toString(),
+            ...bookData,
+        };
+        books.push(newBook);
+        return new Promise((resolve) =>
+            setTimeout(() => resolve(newBook), 300)
+        );
     }
 };
