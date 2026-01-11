@@ -1,95 +1,33 @@
-# Hexad Library - Frontend Assignment
+# Hexad Library - Management System
 
-A library management system built with React and TypeScript that allows users to borrow and return books, with admin capabilities for inventory management.
+A robust library management system built with React and TypeScript. This application allows users to browse, borrow, and return books while providing administrators with powerful tools for inventory management and borrowing tracking.
 
-## 📋 Assignment Requirements Status
+## � Screenshots
 
-### ✅ Completed Features
+### Login Page
+![Login Page](public/screenshots/login_page.png)
 
-#### 1. Book Borrowing & Returning
-- ✅ Users can borrow books
-- ✅ Users can return borrowed books
-- ✅ Display "0" or "Out of Stock" when no books available (never shows negative stock)
-- ✅ **DONE:** Limit users to borrow max 2 books at a time (with UI indicator)
+## �🚀 Core Features
 
-#### 2. Admin Privileges
-- ✅ Admin can add books
-- ✅ Admin can view inventory
-- ✅ Admin can monitor stock levels
-- ✅ **DONE:** Track who has borrowed which books with complete history
-- ✅ **DONE:** Track return status and overdue books
-- ✅ Admin has all user functionalities
+### User Experience
+- **Book Browsing**: Explore a wide collection of books with real-time availability status.
+- **Borrowing System**: Simple one-click borrowing with an enforced limit of **2 books per user**.
+- **Return System**: Easy return process for borrowed books with a dedicated "My Borrowed Books" section.
+- **Stock Indicators**: Clear visual cues for stock levels, including "Out of Stock" badges and color-coded availability.
+- **Responsive Design**: A clean, intuitive interface that works across different screen sizes.
 
-#### 3. User Experience (UI/UX)
-- ✅ User-friendly interface with clear design
-- ✅ Intuitive book borrowing and returning process
-- ✅ Clear indicators for stock availability (color-coded, out of stock badges)
-- ✅ Disabled buttons when stock is 0
-- ✅ Borrow limit indicator (X/2 books)
-- ✅ Navigation system with role-based menus
+### Admin Privileges
+- **Inventory Management**: Add new books to the library and monitor total stock levels.
+- **Borrower Tracking**: Detailed view of who has borrowed which books, including borrow dates and due dates.
+- **Stock Monitoring**: Real-time statistics on total, available, and borrowed books.
+- **Overdue Alerts**: Visual indicators for books that have passed their 14-day loan period.
+- **Full Access**: Admins retain all standard user functionalities in addition to administrative controls.
 
-#### 4. Authentication & Authorization
-- ✅ Auth context with login/logout
-- ✅ Support for two roles: USER & ADMIN
-- ✅ Mock user roles with role-based access
-- ✅ Protected routes by role
-- ✅ **DONE:** Routing system with React Router
-- ⚠️ **DOCUMENTED:** Third-party authentication (see AUTHENTICATION_SETUP.md)
-- ⚠️ **GUIDED:** Token security implementation guide provided
-
-#### 5. Backend Mocking
-- ✅ Mocked backend service (mockApi.ts)
-- ✅ Simulated API interactions with delays
-- ✅ All CRUD operations properly simulated
-- ✅ **DONE:** User-specific borrowing tracking
-- ✅ **DONE:** Complete borrowing history
-
-#### 6. Error Handling & Security
-- ✅ Error messages displayed with ErrorMessage component
-- ✅ Prevent negative stock (never goes below 0)
-- ✅ **DONE:** 2-book limit enforcement with clear error messages
-- ✅ **DONE:** Over-return prevention with validation
-- ✅ **DONE:** User-specific borrow/return validation
-- ✅ Validation for all edge cases
-
-#### 7. Testing & Code Quality
-- ✅ Clean folder structure by feature
-- ✅ TypeScript for type safety
-- ✅ Component-based architecture
-- ✅ Clean Git history
-- ✅ **DONE:** Comprehensive test suite (12 tests covering all scenarios)
-- ✅ Tests for borrow limit, over-return, multi-user scenarios
-- ✅ Documentation and comments
-
-#### 8. Inventory & Book Management
-- ✅ Inventory reflects accurate book counts
-- ✅ Admin can monitor overall stock usage
-- ✅ **DONE:** Track individual user borrowing records
-- ✅ **DONE:** Complete borrowing history with dates
-- ✅ **DONE:** Overdue tracking
-
----
-
-## 🚀 Features Implemented
-
-### User Features
-- Browse available books
-- Borrow books (with stock validation)
-- Return books
-- View stock availability in real-time
-- Disabled borrow button when out of stock
-
-### Admin Features
-- Add new books to inventory
-- View complete inventory with statistics
-- Monitor total, available, and borrowed books
-- Track stock status (In Stock / Out of Stock)
-
-### Shared Components
-- Reusable Button component
-- ErrorMessage component for error handling
-- AuthContext for authentication state management
-- ProtectedRoute for role-based access control
+### Security & Logic
+- **Role-Based Access Control**: Secure routing for User and Admin dashboards.
+- **Borrow Limit Enforcement**: Prevents users from exceeding the 2-book maximum.
+- **Over-Return Prevention**: Validates returns to ensure stock integrity.
+- **Mock API Service**: Fully simulated backend with realistic delays and error handling.
 
 ---
 
@@ -98,98 +36,39 @@ A library management system built with React and TypeScript that allows users to
 ```
 src/
 ├── app/
-│   ├── App.tsx
-│   └── routes.tsx (TODO: Implement routing)
-│
+│   ├── routes.tsx           # Routing configuration
+│   ├── LoginPage.tsx        # Role-based login
+│   └── Navigation.tsx       # Global navigation bar
 ├── auth/
-│   ├── AuthContext.tsx          ✅ Auth state management
-│   ├── ProtectedRoute.tsx       ✅ Role-based routing
-│   └── auth.types.ts            ✅ Auth type definitions
-│
+│   ├── AuthContext.tsx      # Authentication state
+│   └── ProtectedRoute.tsx   # Access control logic
 ├── books/
-│   ├── components/
-│   │   ├── BookCard.tsx         ✅ Book display with actions
-│   │   └── BookList.tsx         ✅ Grid of books
-│   ├── services/
-│   │   └── book.service.ts      (TODO: Optional service layer)
-│   ├── hooks/
-│   │   └── useBooks.ts          ✅ Book operations hook
-│   └── types.ts                 ✅ Book type definitions
-│
+│   ├── components/          # BookCard and BookList components
+│   ├── hooks/               # useBooks custom hook
+│   └── types.ts             # Book and BorrowRecord definitions
 ├── admin/
-│   ├── AdminDashboard.tsx       ✅ Inventory & stats
-│   └── AddBookForm.tsx          ✅ Add new books
-│
+│   ├── AdminDashboard.tsx   # Admin stats and tracking
+│   └── AddBookForm.tsx      # Inventory management
 ├── user/
-│   └── UserDashboard.tsx        ✅ User book browsing
-│
+│   └── UserDashboard.tsx    # User-specific view
 ├── mock/
-│   ├── mockData.ts              ✅ Mock book data
-│   └── mockApi.ts               ✅ Simulated API
-│
+│   ├── mockData.ts          # Initial library data
+│   └── mockApi.ts           # Simulated backend logic
 ├── shared/
-│   ├── components/
-│   │   ├── Button.tsx           ✅ Reusable button
-│   │   └── ErrorMessage.tsx     ✅ Error display
-│   └── utils/
-│       └── constants.ts         (Ready for use)
-│
-├── tests/
-│   └── borrowReturn.test.ts     (TODO: Add real tests)
-│
-└── index.tsx                    ✅ App entry point
+│   └── components/          # Reusable UI components (Button, Error)
+└── tests/
+    └── borrowReturn.test.ts # Automated test suite
 ```
 
 ---
 
-## 🔧 What Still Needs to Be Done
+## �️ Technologies Used
 
-### High Priority
-1. **Implement Routing** (`app/routes.tsx`)
-   - Set up React Router
-   - Define routes for User Dashboard, Admin Dashboard, Login
-   - Connect with ProtectedRoute component
-
-2. **Borrow Limit** (Max 2 books per user)
-   - Track user borrowing count
-   - Disable borrow when user has 2 books
-   - Add UI indicator showing "X/2 books borrowed"
-
-3. **Track Who Borrowed What**
-   - Add borrowing records (userId, bookId, borrowDate)
-   - Admin view to see who has which books
-   - Due date tracking (optional)
-
-4. **Third-Party Authentication**
-   - Integrate Google OAuth or GitHub OAuth
-   - Replace mock login with real authentication
-   - Store auth tokens securely
-
-### Medium Priority
-5. **Enhanced Error Handling**
-   - HTTP status code handling (400, 401, 403)
-   - Better error messages for edge cases
-   - Form validation improvements
-
-6. **Testing**
-   - Unit tests for components
-   - Integration tests for borrow/return flow
-   - Test coverage for edge cases
-
-7. **Prevent Over-Returning**
-   - Better validation to ensure books can't be returned if not borrowed
-   - Track individual user borrowing to validate returns
-
-### Low Priority
-8. **Documentation**
-   - Add JSDoc comments to functions
-   - Component documentation
-   - API documentation
-
-9. **UI Enhancements**
-   - Loading states
-   - Success notifications
-   - Better mobile responsiveness
+- **React**: UI Library
+- **TypeScript**: Static typing for reliability
+- **React Router**: Navigation and routing
+- **React Hooks**: State and lifecycle management
+- **Jest**: Unit and integration testing
 
 ---
 
@@ -197,90 +76,50 @@ src/
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- npm or yarn
+- npm
 
 ### Installation
 
-1. Clone the repository
-```bash
-git clone https://github.com/Swatinavgurukul/hexad-library.git
-cd hexad-library
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Swatinavgurukul/hexad-library.git
+   cd hexad-library
+   ```
 
-2. Install dependencies
-```bash
-npm install
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-3. Start the development server
-```bash
-npm start
-```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The app will open at [http://localhost:3000](http://localhost:3000)
-
-### Available Scripts
-
-- `npm start` - Runs the app in development mode
-- `npm test` - Launches the test runner
-- `npm run build` - Builds the app for production
-- `npm run eject` - Ejects from Create React App (one-way operation)
+The application will be available at `http://localhost:3000`.
 
 ---
 
 ## 🧪 Testing
+
+The project includes a comprehensive test suite covering all core business logic.
 
 Run tests with:
 ```bash
 npm test
 ```
 
-> **Note:** Test implementation is currently minimal and needs to be expanded.
+The tests verify:
+- Borrowing limits (max 2 books)
+- Stock management (preventing negative stock)
+- Return validation (preventing over-returns)
+- Admin inventory operations
 
 ---
 
-## 📝 Technologies Used
+## � Authentication Note
 
-- **React** - UI framework
-- **TypeScript** - Type safety
-- **React Hooks** - State management
-- **Mock API** - Simulated backend
-- **CSS-in-JS** - Inline styling (can be migrated to CSS modules)
+The current version uses a mock authentication system for demonstration. For information on integrating real Google or GitHub OAuth, please refer to **[AUTHENTICATION_SETUP.md](AUTHENTICATION_SETUP.md)**.
 
 ---
 
-## 🎯 Next Steps
-
-1. Implement routing with React Router
-2. Add borrow limit (2 books per user)
-3. Track borrowing records (who borrowed what)
-4. Add third-party authentication
-5. Write comprehensive tests
-6. Improve error handling and validation
-
----
-
-## 👥 Assignment Evaluation Criteria
-
-This project addresses the following frontend development requirements:
-
-- ✅ Book borrowing and returning functionality
-- ✅ Admin privileges for inventory management
-- ✅ User-friendly interface
-- ⚠️ Authentication (basic mock, needs third-party)
-- ✅ Backend mocking
-- ⚠️ Error handling (basic, needs enhancement)
-- ⚠️ Testing (minimal, needs expansion)
-- ✅ Clean code structure and Git history
-
----
-
-## 📄 License
-
-This project was created as part of a frontend development assignment.
-
----
-
-## 🤝 Contributing
-
-This is an assignment project. For any questions or feedback, please contact the repository owner.
