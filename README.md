@@ -8,10 +8,10 @@ A robust library management system built with React and TypeScript. This applica
 ![Login Page](public/screenshots/login_page.png)
 
 ### User Dashboard
-![User Dashboard](public/screenshots/user_dashboard.png)
+![User Dashboard](public/screenshots/mock_user_page.png)
 
 ### Admin Dashboard
-![Admin Dashboard](public/screenshots/admin_dashboard.png)
+![Admin Dashboard](public/screenshots/mock_admin_page.png)
 
 ## �🚀 Core Features
 
